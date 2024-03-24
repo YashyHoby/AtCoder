@@ -1,5 +1,6 @@
-// 条件を満たす区間の数
+#include "template.h"
 
+// 条件を満たす区間の数
 int right = 0;
 FOR(left, 0, n){
     while(right < n && 条件){

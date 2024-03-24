@@ -14,6 +14,7 @@ template<class T>void vvin(vector<vector<T>> &vec){ for(auto& row : vec){ for(au
 template<class T>void vout(vector<T> &vec){ cout << vec.at(0); for(int i=1; i<vec.size(); i++){ cout << vec.at(i); } cout << endl; }
 template<class T>void vvout(vector<vector<T>> &vec){ for(auto& row : vec){ cout << row.at(0); for(int i=1; i<row.size(); i++){ cout << row.at(i); } cout << endl; } }
 template<class T>void vout_(vector<T> &vec){ cout << vec.at(0); for(int i=1; i<vec.size(); i++){ cout << " " << vec.at(i); } cout << endl; }
+template<class T>void vout_n(vector<T> &vec){ cout << vec.at(0); for(int i=1; i<vec.size(); i++){ cout << "\n" << vec.at(i); } cout << endl; }
 template<class T>void vvout_(vector<vector<T>> &vec){ for(auto& row : vec){ cout << row.at(0); for(int i=1; i<row.size(); i++){ cout << " " << row.at(i); } cout << endl; } }
 
 using ull = unsigned long long;
@@ -28,30 +29,53 @@ using vs = vector<string>;
 
 using Graph = vector<vector<int>>;
 
+ll count_combinations(ll n) {
+  return n * (n - 1) / 2;
+}
+
+ll suuretuwa(ll x){
+    if(x>0){
+        return suuretuwa(x-1)+x;
+    }else{
+        return 0;
+    }
+}
+
 void Main()
 {   
-    ll a,m,l,r;
 
-    cin>>a>>m>>l>>r;
+    ll n,k;
+    cin >> n >> k;
+    
+    vll A; 
 
-    ll ra = r-a;
-    ll la = l-a;
-    ll am = a/m;
+    ll sum = 0;
+    sum = suuretuwa(k);
 
-    ll r_ = (r-a)/m;
-    ll l_ = (l-a)/m;
-
-    ll ans = (r-a)-(l-a);
-
-    if(l<a&&a<r){
-        cout << r_-l_+1 << endl;
-    }else{
-        cout << r_-l_ << endl;
+    ll a;
+    REP(i, n){
+        cin >> a;
+        
+        bool find = false;
+        for(ll a_ : A){
+            if(a_==a){
+                find = true;
+            }
+        }
+        if(!find){
+            sum-=a;
+            A.push_back(a);
+        }
     }
 
 
 
-    
+
+
+    cout << sum<< endl;
+
+
+
 }
 
 int main()

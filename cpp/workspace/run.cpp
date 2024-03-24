@@ -14,7 +14,12 @@ template<class T>void vvin(vector<vector<T>> &vec){ for(auto& row : vec){ for(au
 template<class T>void vout(vector<T> &vec){ cout << vec.at(0); for(int i=1; i<vec.size(); i++){ cout << vec.at(i); } cout << endl; }
 template<class T>void vvout(vector<vector<T>> &vec){ for(auto& row : vec){ cout << row.at(0); for(int i=1; i<row.size(); i++){ cout << row.at(i); } cout << endl; } }
 template<class T>void vout_(vector<T> &vec){ cout << vec.at(0); for(int i=1; i<vec.size(); i++){ cout << " " << vec.at(i); } cout << endl; }
+template<class T>void vout_n(vector<T> &vec){ cout << vec.at(0); for(int i=1; i<vec.size(); i++){ cout << "\n" << vec.at(i); } cout << endl; }
 template<class T>void vvout_(vector<vector<T>> &vec){ for(auto& row : vec){ cout << row.at(0); for(int i=1; i<row.size(); i++){ cout << " " << row.at(i); } cout << endl; } }
+
+template<class T>void yesno(T &a){ if(a){ cout << "yes" << endl; } else { rcout << "no" << endl; } }
+template<class T>void YesNo(T &a){ if(a){ cout << "Yes" << endl; } else { rcout << "No" << endl; } }
+template<class T>void YESNO(T &a){ if(a){ cout << "YES" << endl; } else { rcout << "NO" << endl; } }
 
 using ull = unsigned long long;
 using ll = long long;
@@ -28,61 +33,50 @@ using vs = vector<string>;
 
 using Graph = vector<vector<int>>;
 
-// 無向グラフ（木）において，任意の頂点から各頂点への最短距離O(n)で算出
-
-// 頂点 s から DFS
-// sから各頂点への最短距離を格納した配列distを返却（dist.at(s)==0）
-vi dfs(const Graph &G, int s){
-    int n = G.size();
-    //sから各頂点への距離
-    vi dist(n, -1);
-    dist.at(s) = 0;
-
-    //初期ノードs
-    queue<int> que;
-    que.push(s);
-
-    while(!que.empty()){
-        int v = que.front();
-        que.pop();
-
-        for(int g : G.at(v)){
-            if(dist.at(g) != -1) continue;
-
-            dist.at(g)=dist.at(v)+1;
-            que.push(g);
-        }
-    }
-
-    return dist;
+ll count_combinations(ll n) {
+  return n * (n - 1) / 2;
 }
-
 
 void Main()
 {   
-    //　頂点数
-    int n;
-    cin >> n;
 
-    Graph G(n);
+    ll n,k;
+    cin >> n >> k;
     
-    REP(i, n-1){
-        int a, b;
-        cin >> a >> b;
-        G.at(a-1).push_back(b-1);
-        G.at(b-1).push_back(a-1);
+    vll A(n); 
+    vin(A);
+
+    sort(ALL(A));
+
+    ll sum=0;
+    ll inleft = -1;
+    FOR(i, 1, k+1){
+        bool find = false;
+        ll left = inleft, right = ll(A.size());
+        while (right - left > 1) {
+            ll mid = (left + right) / 2;
+            if (A.at(mid) == ll(i)){
+                find = true;
+                inleft = A.at(mid);
+                break;
+            }else if (A.at(mid) < ll(i)){
+                left = mid;
+            }else{
+                right = mid;
+            }
+        }
+        if(!find){
+            //cout << i << endl;
+            sum+=i;
+        }
+
     }
 
-    vi dist0 = dfs(G, 0);
 
-    //最大値の要素番号取得
-    int maxIndex0 = distance(dist0.begin(), max_element(dist0.begin(), dist0.end()));
+    cout << sum << endl;
 
-    vi dist1 = dfs(G, maxIndex0);
 
-    int maxIndex1 = distance(dist1.begin(), max_element(dist1.begin(), dist1.end()));
 
-    cout << dist1.at(maxIndex1)+1 << endl;
 }
 
 int main()
