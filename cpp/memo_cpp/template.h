@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+#define _GLIBCXX_DEBUG
 using namespace std;
 
 #define FOR(i, a, b) for(int i=(a); i<(b); i++)
@@ -15,7 +16,10 @@ template<class T>void vout(vector<T> &vec){ cout << vec.at(0); for(int i=1; i<ve
 template<class T>void vvout(vector<vector<T>> &vec){ for(auto& row : vec){ cout << row.at(0); for(int i=1; i<row.size(); i++){ cout << row.at(i); } cout << endl; } }
 template<class T>void vout_(vector<T> &vec){ cout << vec.at(0); for(int i=1; i<vec.size(); i++){ cout << " " << vec.at(i); } cout << endl; }
 template<class T>void vvout_(vector<vector<T>> &vec){ for(auto& row : vec){ cout << row.at(0); for(int i=1; i<row.size(); i++){ cout << " " << row.at(i); } cout << endl; } }
-template<class T>void YesNo(T a){ if(a){ cout << "Yes" << endl; }else{ cout << "No" << endl; } }
+
+template<class T>void yesno(T &a){ if(a){ cout << "yes" << endl; } else { rcout << "no" << endl; } }
+template<class T>void YesNo(T &a){ if(a){ cout << "Yes" << endl; } else { rcout << "No" << endl; } }
+template<class T>void YESNO(T &a){ if(a){ cout << "YES" << endl; } else { rcout << "NO" << endl; } }
 
 using vi = vector<int>;
 using vl = vector<long>;

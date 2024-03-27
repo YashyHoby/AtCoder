@@ -1,6 +1,5 @@
 #include "template.h"
 
-
 // vec内から，targetの有無を判定
 // log(N)+1
 template <typename T>
@@ -27,6 +26,7 @@ bool std_binary_search(vector<T>& vec, T target){
 }
 /*--------------------------------------------------*/
 // vec内の，target以上の要素のうち，最小の要素位置を取得
+// O(logN)
 template <typename T>
 auto std_lower_bound(vector<T>& vec, T target) {
   //sort(vec.begin(), vec.end());
@@ -50,7 +50,7 @@ auto std_upper_bound(vector<T>& vec, T target) {
   return index;
 }
 /*--------------------------------------------------*/
-// 最小値検索
+// 最小値検索 O(n)
 template <typename T>
 auto std_min_element(vector<T>& vec){
   auto iter = min_element(vec.begin(), vec.end());
@@ -59,7 +59,7 @@ auto std_min_element(vector<T>& vec){
   return value;
 }
 
-// 最大値検索
+// 最大値検索 O(n)
 template <typename T>
 auto std_max_element(vector<T>& vec){
   auto iter = max_element(vec.begin(), vec.end());
